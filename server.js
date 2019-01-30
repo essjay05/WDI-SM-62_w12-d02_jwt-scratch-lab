@@ -1,16 +1,19 @@
+// REQUIRE .ENV
+require('dotenv').config();
 // CONSTANTS TO REQUIRE FROM EXTERNAL FILES
 const
     express = require('express'),
     app = express(),
     path = require('path'),
     logger = require('morgan'),
-    bodyParser = require('body-paraser'),
+    bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
-    MONGDB_URI = process.env.MONGDB_URI || 'mongodb://localhost:27017/react-express-jwt',
+    MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/react-express-jwt',
+    usersRoutes = require('./routes/users.js')
     PORT = process.env.PORT || 3000;
 
 // DATABASE
-mongoose.connect(MONDB_URI, { useNewUrlParser: true }, ( err ) => {
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true }, ( err ) => {
     console.log(err || `Connected to MongoDB.`)
 })
 
